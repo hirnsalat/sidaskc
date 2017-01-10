@@ -1,0 +1,4 @@
+Beaker==1.8.1
+forecastiopy==0.21
+geopy==1.11.0
+requests==2.12.4

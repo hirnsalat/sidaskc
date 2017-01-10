@@ -2,3 +2,7 @@ weather/
 __pycache__/
 secrets.py
 forecastiopy3/
+.env/
+build/
+dist/
+sidaskc.egg-info/
