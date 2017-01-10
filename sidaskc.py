@@ -1,12 +1,23 @@
-from secrets import key
 from beaker.cache import CacheManager
 from beaker.util import parse_cache_config_options
 import argparse
 import pickle #to test smth
 from forecastiopy import *
 from geopy.geocoders import Nominatim
+import os, sys
 
 geolocator = Nominatim()
+
+try:
+    key = os.environ["DARK_SKY_API"]
+except KeyError:
+    print("""
+Please set the environment variable DARK_SKY_API to your DarkSky API key!
+Get a key here: https://darksky.net/dev/
+Set it like this: export DARK_SKY_API=0123456789abcdef0123456789abcdef
+""")
+    sys.exit(0)
+    
 
 parser = argparse.ArgumentParser(description="Small weather script.")
 parser.add_argument('location', type=str, help="for which to find the weather for")
