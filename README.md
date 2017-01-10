@@ -5,4 +5,4 @@ The goal for this little command line tool was to be used in system monitors, st
 
 Obviously, this is [Powered by Dark Sky](https://darksky.net/poweredby/).
 
-Released under the MIT License (see license.txt).
+Released under the MIT License (see LICENSE).
