@@ -10,6 +10,10 @@ geolocator = Nominatim()
 
 parser = argparse.ArgumentParser(description="Small weather script.")
 parser.add_argument('location', type=str, help="for which to find the weather for")
+parser.add_argument('-t', action="store_true", help="print temperature")
+parser.add_argument('-s', action="store_true", help="print summary")
+parser.add_argument('-o', action="store_true", help="print hourly summary")
+parser.add_argument('-d', action="store_true", help="print daily summary")
 
 args = parser.parse_args()
 
@@ -27,8 +31,11 @@ def get_forecast(locstr):
     return ForecastIO.ForecastIO(key, latitude=location.latitude, longitude=location.longitude, units="si")
 
 fo = get_forecast(args.location)
-print(fo.currently["temperature"])
-print(fo.currently["summary"])
-print(fo.daily["summary"])
-
-fh = open("sth", "wb")
+if(args.t):
+    print("{: .0f}".format(fo.currently["temperature"]))
+if(args.s):
+    print(fo.currently["summary"])
+if(args.o):
+    print(fo.hourly["summary"])
+if(args.d):
+    print(fo.daily["summary"])
