@@ -26,8 +26,6 @@ parser.add_argument('-s', action="store_true", help="print summary")
 parser.add_argument('-o', action="store_true", help="print hourly summary")
 parser.add_argument('-d', action="store_true", help="print daily summary")
 
-args = parser.parse_args()
-
 cache_opts = {
     'cache.type': 'file',
     'cache.data_dir': '/tmp/weatherpycache/data',
@@ -41,12 +39,20 @@ def get_forecast(locstr):
     location = geolocator.geocode(locstr)
     return ForecastIO.ForecastIO(key, latitude=location.latitude, longitude=location.longitude, units="si")
 
-fo = get_forecast(args.location)
-if(args.t):
-    print("{: .0f}".format(fo.currently["temperature"]))
-if(args.s):
-    print(fo.currently["summary"])
-if(args.o):
-    print(fo.hourly["summary"])
-if(args.d):
-    print(fo.daily["summary"])
+def main():
+    args = parser.parse_args()
+
+    fo = get_forecast(args.location)
+    if(args.t):
+        print("{: .0f}".format(fo.currently["temperature"]))
+    if(args.s):
+        print(fo.currently["summary"])
+    if(args.o):
+        print(fo.hourly["summary"])
+    if(args.d):
+        print(fo.daily["summary"])
+    if(not (args.t or args.s or args.o or args.d)):
+        print("{: .0f}°C, {}. {}".format(fo.currently["temperature"], fo.currently["summary"], fo.hourly["summary"]))
+
+if __name__ == "__main__":
+    main()
