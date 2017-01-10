@@ -15,3 +15,17 @@ Just doing
     python setup.py install
 
 should do the trick.
+
+Your DarkSky API key (get one for free [here](https://darksky.net/dev/)) needs to be exported for this to work, so add something like this:
+
+    export DARK_SKY_API=0123456789abcdef0123456789abcdef
+
+to your `.bashrc`.
+
+If you want don't want to install it system wide, you can use a virtual environment, for example:
+
+    virtualenv venv
+    source venv/bin/activate
+    python setup.py install
+
+This would put the executable under `venv/bin/sidaskc`, and you can link it, write a wrapper script or call it directly.

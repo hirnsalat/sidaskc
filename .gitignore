@@ -6,3 +6,4 @@ forecastiopy3/
 build/
 dist/
 sidaskc.egg-info/
+*.swp
